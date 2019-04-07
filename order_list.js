@@ -1,10 +1,18 @@
-var green_salad=document.getElementById("green_salad");
-var count_green_salad=0;
-green_salad.addEventListener("click",function{
-    count_green_salad++;
-});
-if(count_green_salad>0)
+var green_salad=document.getElementById('green_salad');
+var shaved_salad=document.getElementById('shaved_salad');
+var count_green1=0;
+var output=document.getElementById('output');
+function inc()
 {
-    var li=document.getElementsByTagName(li);
-
+    count_green1++;
+    alert(count_green1);
+    if(count_green1==1)
+    {
+        console.log('working');
+        var node=document.createElement('LI');
+        var textnode=document.createTextNode('Green Goddess Salad');
+        node.appendChild(textnode);
+        
+    }
 }
+
