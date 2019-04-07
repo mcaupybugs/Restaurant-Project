@@ -18,6 +18,7 @@
       padding-right:10px;
     }
     
+    
   </style>
 </head>
 <body>
@@ -45,23 +46,23 @@
     </div>
   </nav>
               <!-- Cart head and the image-->
-    <div class="container ">
+    <div class="container">
     <div><img src="shopping-cart.png" width="20%" height="20%" style="margin-top:0px" alt="Unsplashed background img 1"><h4>Your Shopping Cart is ready</h4></div>
   </div>
   <br>
 
   <div class="container"><!-- Main cart list and button -->
     <hr><ul id="content">
-      <li id="output"><h5>Green Goddess Salad<button onclick="incnumber()" style="float: right" id="green_salad" class="btn-floating btn-small waves-effect waves-light black margin" value="green_salad" ><i class="material-icons">add</i></button><span class="margin green_me" id="green_count">0</span><span class="margin">Quantity: </span></h5></li>
-      <li id="output"><h5>French Fries<button onclick="incnumber()" style="float: right" id="green_salad" class="btn-floating btn-small waves-effect waves-light black margin" value="green_salad" ><i class="material-icons">add</i></button><span class="margin" id="count">0</span><span class="margin">Quantity: </span></h5></li>
-      <li id="output"><h5>Spring Fed Rainbow Trout<button onclick="incnumber()" style="float: right" id="green_salad" class="btn-floating btn-small waves-effect waves-light black margin" value="green_salad" ><i class="material-icons">add</i></button><span class="margin" id="count">0</span><span class="margin">Quantity: </span></h5></li>
-      <li id="output"><h5>Shaved Celery Salad<button onclick="incnumber()" style="float: right" id="green_salad" class="btn-floating btn-small waves-effect waves-light black margin" value="green_salad" ><i class="material-icons">add</i></button><span class="margin" id="count">0</span><span class="margin">Quantity: </span></h5></li>
-      <li id="output"><h5>Snap Pea Succotash<button onclick="incnumber()" style="float: right" id="green_salad" class="btn-floating btn-small waves-effect waves-light black margin" value="green_salad" ><i class="material-icons">add</i></button><span class="margin" id="count">0</span><span class="margin">Quantity: </span></h5></li>
-      <li id="output"><h5>Harissa Chicken<button onclick="incnumber()" style="float: right" id="green_salad" class="btn-floating btn-small waves-effect waves-light black margin" value="green_salad" ><i class="material-icons">add</i></button><span class="margin" id="count">0</span><span class="margin">Quantity: </span></h5></li>
-      <li id="output"><h5>Charred Bean Salad<button onclick="incnumber()" style="float: right" id="green_salad" class="btn-floating btn-small waves-effect waves-light black margin" value="green_salad" ><i class="material-icons">add</i></button><span class="margin" id="count">0</span><span class="margin">Quantity: </span></h5></li>
-      <li id="output"><h5>Braised Green<button onclick="incnumber()" style="float: right" id="green_salad" class="btn-floating btn-small waves-effect waves-light black margin" value="green_salad" ><i class="material-icons">add</i></button><span class="margin" id="count">0</span><span class="margin">Quantity: </span></h5></li>
-      <li id="output"><h5>Farro Risotto<button onclick="incnumber()" style="float: right" id="green_salad" class="btn-floating btn-small waves-effect waves-light black margin" value="green_salad" ><i class="material-icons">add</i></button><span class="margin" id="count">0</span><span class="margin">Quantity: </span></h5></li>
-      <li id="output"><h5>Simple Pasta<button onclick="incnumber()" style="float: right" id="green_salad" class="btn-floating btn-small waves-effect waves-light black margin" value="green_salad" ><i class="material-icons">add</i></button><span class="margin" id="count">0</span><span class="margin">Quantity: </span></h5></li>
+      <li id="output"><h5>Green Goddess Salad<button onclick="incnumber(value)" style="float: right" id="green_salad" class="btn-floating btn-small waves-effect waves-light black margin" value="green_count" ><i class="material-icons">add</i></button><span class="margin" id="green_count">0</span><span class="margin">Quantity: </span></h5></li>
+      <li id="output"><h5>French Fries<button onclick="incnumber(value)" style="float: right" class="btn-floating btn-small waves-effect waves-light black margin" value="french_count" ><i class="material-icons">add</i></button><span class="margin" id="french_count">0</span><span class="margin">Quantity: </span></h5></li>
+      <li id="output"><h5>Spring Fed Rainbow Trout<button onclick="incnumber(value)" style="float: right" class="btn-floating btn-small waves-effect waves-light black margin" value="spring_count" ><i class="material-icons">add</i></button><span class="margin" id="spring_count">0</span><span class="margin">Quantity: </span></h5></li>
+      <li id="output"><h5>Shaved Celery Salad<button onclick="incnumber(value)" style="float: right" class="btn-floating btn-small waves-effect waves-light black margin" value="shaved_count" ><i class="material-icons">add</i></button><span class="margin" id="shaved_count">0</span><span class="margin">Quantity: </span></h5></li>
+      <li id="output"><h5>Snap Pea Succotash<button onclick="incnumber(value)" style="float: right" class="btn-floating btn-small waves-effect waves-light black margin" value="snup_count" ><i class="material-icons">add</i></button><span class="margin" id="snup_count">0</span><span class="margin">Quantity: </span></h5></li>
+      <li id="output"><h5>Harissa Chicken<button onclick="incnumber(value)" style="float: right" class="btn-floating btn-small waves-effect waves-light black margin" value="harissa_count" ><i class="material-icons">add</i></button><span class="margin" id="harissa_count">0</span><span class="margin">Quantity: </span></h5></li>
+      <li id="output"><h5>Charred Bean Salad<button onclick="incnumber(value)" style="float: right" class="btn-floating btn-small waves-effect waves-light black margin" value="charred_count" ><i class="material-icons">add</i></button><span class="margin" id="charred_count">0</span><span class="margin">Quantity: </span></h5></li>
+      <li id="output"><h5>Braised Green<button onclick="incnumber(value)" style="float: right" class="btn-floating btn-small waves-effect waves-light black margin" value="braised_count" ><i class="material-icons">add</i></button><span class="margin" id="braised_count">0</span><span class="margin">Quantity: </span></h5></li>
+      <li id="output"><h5>Farro Risotto<button onclick="incnumber(value)" style="float: right" class="btn-floating btn-small waves-effect waves-light black margin" value="farro_count" ><i class="material-icons">add</i></button><span class="margin" id="farro_count">0</span><span class="margin">Quantity: </span></h5></li>
+      <li id="output"><h5>Simple Pasta<button onclick="incnumber(value)" style="float: right" class="btn-floating btn-small waves-effect waves-light black margin" value="simple_count" ><i class="material-icons">add</i></button><span class="margin" id="simple_count">0</span><span class="margin">Quantity: </span></h5></li>
     </ul><hr>
 
     <button style="margin-bottom: 10px" class="btn waves-effect waves-light" type="submit" name="action">Order
