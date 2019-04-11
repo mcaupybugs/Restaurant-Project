@@ -1,0 +1,24 @@
+{
+  "name": "project_web_d",
+  "version": "1.0.0",
+  "description": "Web d project",
+  "main": "order.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivishalydv/web_d.git"
+  },
+  "author": "Vishal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivishalydv/web_d/issues"
+  },
+  "homepage": "https://github.com/ivishalydv/web_d#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.11"
+  }
+}
