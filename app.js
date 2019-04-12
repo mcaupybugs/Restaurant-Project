@@ -44,6 +44,11 @@ app.get('/thankyou',(req,res)=>{
     console.log("Thank you");
 });
 
+app.get('/feedback',(req,res)=>{
+    res.render("../feedback");
+    console.log("Thank you for your feedback");
+});
+
 const port=process.env.PORT || 3000;
 
 app.listen(port,()=>
