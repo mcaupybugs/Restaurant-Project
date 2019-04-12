@@ -1,1 +1,0 @@
-<li id="output"><h5>Green Goddess Salad<button onclick="incnumber()" style="float: right" id="green_salad" class="btn-floating btn-small waves-effect waves-light black margin" value="green_salad" ><i class="material-icons">add</i></button><span class="margin" id="count">1</span><span class="margin">Quantity: </span></h5></li>

@@ -34,6 +34,16 @@ app.get('/cart',(req,res)=>{
     console.log("Cart logged");
 });
 
+app.get('/order',(req,res)=>{
+    res.render("../order");
+    console.log("Ordering....");
+});
+
+app.get('/thankyou',(req,res)=>{
+    res.render("../order_placed");
+    console.log("Thank you");
+});
+
 const port=process.env.PORT || 3000;
 
 app.listen(port,()=>
