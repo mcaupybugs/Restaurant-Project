@@ -1,0 +1,8 @@
+.margin{
+     
+    float:right;
+    padding-right:10px;
+  }
+  .border{
+    border:solid black 5px;
+  }

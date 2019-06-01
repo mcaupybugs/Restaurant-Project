@@ -1,51 +1,57 @@
 var express=require('express');
 var app=express();
+var bodyParser=require("body-parser");
+var mongoose=require("mongoose");
+
+
 
 app.use(express.static("public"));
 app.set("view engine","ejs");
+app.use(bodyParser.urlencoded({extended:true}));
+
 
 app.use('/', express.static(__dirname + '/'));
 
 app.get('/',(req,res)=>
 {
-    res.render("../index");
+    res.render("index");
     console.log("homepage logged");
 });
 
 app.get('/about',(req,res)=>
 {
-    res.render("../about");
+    res.render("about");
     console.log("About section logged");
 });
 
 app.get('/gallery',(req,res)=>
 {
-    res.render("../gallery");
+    res.render("gallery");
     console.log("Gallery logged");
 });
 
 app.get('/menu',(req,res)=>{
-    res.render("../menu");
+    res.render("menu");
     console.log("Menu logged");
 });
 
 app.get('/cart',(req,res)=>{
-    res.render("../order_online");
+    res.render("order_online");
     console.log("Cart logged");
 });
 
 app.get('/order',(req,res)=>{
-    res.render("../order");
+    res.render("order");
     console.log("Ordering....");
 });
 
 app.get('/thankyou',(req,res)=>{
-    res.render("../order_placed");
+    res.render("order_placed");
     console.log("Thank you");
 });
 
 app.get('/feedback',(req,res)=>{
-    res.render("../feedback");
+    res.render("feedback");
     console.log("Thank you for your feedback");
 });
 

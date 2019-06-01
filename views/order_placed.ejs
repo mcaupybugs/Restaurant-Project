@@ -1,0 +1,40 @@
+<%include ./partials/header%>
+
+<!--Nav desktop-->
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="/" class="brand-logo"><i class="medium material-icons">local_dining</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/menu">Menu</a></li>
+          <li><a href="/cart">Cart</a></li>
+          <li><a href="/cart"><i class="medium material-icons">add_shopping_cart</i></a></li>
+      </ul>
+  <!--Nav mobile-->
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/menu">Menu</a></li>
+        <li><a href="/cart">Cart</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  
+<!--Text sections-->
+  <div class="jumbotron text-xs-center">
+    <h1 class="display-3">Thank You for your order!</h1>
+    <p class="lead"><strong>Please wait </strong>till we ring your doorbell.</p>
+    <hr>
+    <p>
+      Please share your feedback <a href="/feedback">Feedback</a>
+    </p>
+    <p class="lead">
+      <a class="btn btn-primary btn-sm" href="/" role="button">Continue to homepage</a>
+    </p>
+  </div>
+
+<% include ./partials/footer%>

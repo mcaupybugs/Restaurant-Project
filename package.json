@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/ivishalydv/web_d#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "mongoose": "^5.5.12",
     "nodemon": "^1.18.11"
   }
 }
