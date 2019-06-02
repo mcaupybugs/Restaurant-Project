@@ -1,7 +1,5 @@
 var mongoose=require("mongoose");
 
-mongoose.connect("mongodb://localhost/restaurant");
-
 var orderSchema=new mongoose.Schema({
     name:String,
     value:Number
