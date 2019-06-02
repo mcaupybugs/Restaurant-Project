@@ -2,93 +2,52 @@ var express=require('express');
 var app=express();
 var bodyParser=require("body-parser");
 var mongoose=require("mongoose");
+var passport=require("passport");
+var LocalStrategy=require("passport-local");
+var passportLocalMongoose=require("passport-local-mongoose");
 var Order=require("./models/order");
 var User=require("./models/user");
 
-console.log(process.env.DATABASEURL);
-mongoose.connect(process.env.DATABASEURL);
+//Calling routes
+var restaurantRoutes=require("./routes/restaurant");
+var authRoutes=require("./routes/index");
+
+mongoose.connect("mongodb://localhost/restaurant");
+//mongoose.connect(process.env.DATABASEURL);
+
+
+app.use(require("express-session")({
+    secret:"here it is",
+    resave:false,
+    saveUninitialized:false
+}));
 
 
 app.use(express.static("public"));
 app.set("view engine","ejs");
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
 app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.use('/', express.static(__dirname + '/'));
-
-app.get("/register",(req,res)=>{
-    res.render("register");
-})
-
-app.post("/register",(req,res)=>{
-    User.create(req.body.user,(err,newUser)=>{
-        if(err){
-            res.render("/");
-        }else{
-            console.log(req.body.user);
-            res.render("menu");
-        }
-    });
+ 
+app.use((req,res,next)=>{
+    res.locals.currentUser=req.user;
+    next();
 });
 
-app.get('/',(req,res)=>
-{
-    res.render("index");
-    console.log("homepage logged");
-});
+app.use(restaurantRoutes);
+app.use(authRoutes);
 
-app.get('/about',(req,res)=>
-{
-    res.render("about");
-    console.log("About section logged");
-});
-
-app.get('/gallery',(req,res)=>
-{
-    res.render("gallery");
-    console.log("Gallery logged");
-});
-
-app.get('/menu',(req,res)=>{
-    res.render("menu");
-    console.log("Menu logged");
-});
-
-app.post('/menu',(req,res)=>{
-    Order.create(req.body.order,(err,newOrder)=>{
-        if(err){
-            res.render("/");
-            console.log(err);
-        }else{
-            res.redirect("menu");
-        }
-    });
-});
-
-app.get('/cart',(req,res)=>{
-    Order.distinct("name",(err,foods)=>{
-        if(err){
-            console.log(err);
-        }else{
-            res.render("order_online",{foods:foods});
-        }
-    });
-});
-
-app.get('/order',(req,res)=>{
-    res.render("order");
-    console.log("Ordering....");
-});
-
-app.get('/thankyou',(req,res)=>{
-    res.render("order_placed");
-    console.log("Thank you");
-});
-
-app.get('/feedback',(req,res)=>{
-    res.render("feedback");
-    console.log("Thank you for your feedback");
-});
+//Listeners 
 
 const port=process.env.PORT || 3000;
 
