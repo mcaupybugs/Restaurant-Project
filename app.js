@@ -3,8 +3,9 @@ var app=express();
 var bodyParser=require("body-parser");
 var mongoose=require("mongoose");
 var Order=require("./models/order");
+var User=require("./models/user");
 
-
+console.log(process.env.DATABASEURL);
 mongoose.connect(process.env.DATABASEURL);
 
 
@@ -14,6 +15,21 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.use('/', express.static(__dirname + '/'));
+
+app.get("/register",(req,res)=>{
+    res.render("register");
+})
+
+app.post("/register",(req,res)=>{
+    User.create(req.body.user,(err,newUser)=>{
+        if(err){
+            res.render("/");
+        }else{
+            console.log(req.body.user);
+            res.render("menu");
+        }
+    });
+});
 
 app.get('/',(req,res)=>
 {
