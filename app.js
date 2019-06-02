@@ -2,9 +2,11 @@ var express=require('express');
 var app=express();
 var bodyParser=require("body-parser");
 var mongoose=require("mongoose");
+var Order=require("./models/order");
+var cookieParser=require("cookie-parser");
 
 
-
+app.use(cookieParser());
 app.use(express.static("public"));
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:true}));
@@ -35,9 +37,25 @@ app.get('/menu',(req,res)=>{
     console.log("Menu logged");
 });
 
+app.post('/menu',(req,res)=>{
+    Order.create(req.body.order,(err,newOrder)=>{
+        if(err){
+            res.render("/");
+            console.log(err);
+        }else{
+            res.redirect("menu");
+        }
+    });
+});
+
 app.get('/cart',(req,res)=>{
-    res.render("order_online");
-    console.log("Cart logged");
+    Order.distinct("name",(err,foods)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.render("order_online",{foods:foods});
+        }
+    });
 });
 
 app.get('/order',(req,res)=>{
