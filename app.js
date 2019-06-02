@@ -6,7 +6,6 @@ var Order=require("./models/order");
 
 
 mongoose.connect(process.env.DATABASEURL);
-console.log(process.env.DATABASEURL);
 
 
 app.use(express.static("public"));
