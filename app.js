@@ -5,8 +5,8 @@ var mongoose=require("mongoose");
 var Order=require("./models/order");
 
 
-//mongoose.connect("mongodb://localhost/restaurant");
-mongoose.connect("mongodb+srv://vishal:#vis#mongodb8474@hotelcluster-smaw4.mongodb.net/test?retryWrites=true&w=majority");
+mongoose.connect(process.env.DATABASEURL);
+console.log(process.env.DATABASEURL);
 
 
 app.use(express.static("public"));
