@@ -3,10 +3,9 @@ var app=express();
 var bodyParser=require("body-parser");
 var mongoose=require("mongoose");
 var Order=require("./models/order");
-var cookieParser=require("cookie-parser");
 
 
-app.use(cookieParser());
+
 app.use(express.static("public"));
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:true}));
