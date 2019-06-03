@@ -3,17 +3,18 @@
 
               <!-- Cart head and the image-->
     <div class="container">
-    <div><img src="images/shopping-cart.png" width="20%" height="20%" style="margin-top:0px" alt="Unsplashed background img 1"><h4>Your Shopping Cart is ready</h4></div>
-  </div>
-  <br>
+    <div><img src="images/shopping-cart.png" width="20%" height="20%" style="margin-top:0px" alt="Unsplashed background img 1"><h4>Your Shopping Cart is Ready</h4></div>
+    <hr>
 
-  <div class="container"><!-- Main cart list and button -->
-    <hr><ul id="content">
+<!-- Main cart list and button -->
+  <form action="/cart?_method=DELETE" method="POST">
     <%foods.forEach((food)=>{%>
-      <li id="output">
-      <h5><%=food.name%></h5> 
-      </li>
+      <button style="float:right" class="btn-floating btn-small waves-effect waves-light black" type="submit" name="food[id]" value="<%=food.id%>"><i class="material-icons">delete</i></button>
+      <span class="pad flow-text"style="float:right">Quantity: <%=food.value%></span>
+      </form>
+      <h5><%=food.name%></h5>
     <% });%>
   </div>
+  </form>
 
 <% include ./partials/footer%>

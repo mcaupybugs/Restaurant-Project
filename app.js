@@ -7,13 +7,14 @@ var LocalStrategy=require("passport-local");
 var passportLocalMongoose=require("passport-local-mongoose");
 var Order=require("./models/order");
 var User=require("./models/user");
+var methodOverride=require("method-override");
 
 //Calling routes
 var restaurantRoutes=require("./routes/restaurant");
 var authRoutes=require("./routes/index");
 
-//mongoose.connect("mongodb://localhost/restaurant");
-mongoose.connect(process.env.DATABASEURL);
+mongoose.connect("mongodb://localhost/restaurant");
+//mongoose.connect(process.env.DATABASEURL);
 
 
 app.use(require("express-session")({
@@ -22,7 +23,7 @@ app.use(require("express-session")({
     saveUninitialized:false
 }));
 
-
+app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.set("view engine","ejs");
 app.use(passport.initialize());

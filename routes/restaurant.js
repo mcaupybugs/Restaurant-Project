@@ -2,6 +2,8 @@ var express=require("express");
 var router=express.Router({mergeParams:true});
 var User=require("../models/user");
 var Order=require("../models/order");
+var methodOverride=require("method-override");
+
 
 
 //Basic Restaurant Routes
@@ -32,6 +34,8 @@ router.get('/menu',isLoggedIn,(req,res)=>{
 });
 
 router.post('/menu',isLoggedIn,(req,res)=>{
+    req.body.order.value=1;
+    console.log(req.body.order);
     Order.create(req.body.order,(err,newOrder)=>{
         if(err){
             res.render("/");
@@ -74,6 +78,44 @@ router.get('/feedback',(req,res)=>{
     res.render("feedback");
     console.log("Thank you for your feedback");
 });
+
+//========================================
+
+router.put("/cart",(req,res)=>{
+    var val=0;
+    Order.findById(req.body.food.id,(err,foundItem)=>{
+        val=foundItem.value;
+        val=val+1;
+        var item={
+            name:foundItem.name,
+            value:val
+        }
+        console.log(item);  
+        Order.findByIdAndUpdate(req.body.food.id,item,(err,updateItem)=>{
+            if(err){
+                res.redirect("/cart")
+            }else{
+                res.redirect("/cart");
+            }
+        })
+
+    })
+})
+
+
+
+//=========================================
+
+router.delete("/cart",(req,res)=>{
+    Order.findByIdAndRemove(req.body.food.id,(err,removedItem)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.redirect("/cart");
+        }
+    })
+});
+//=========================================
 
 //Middleware
 function isLoggedIn(req,res,next){
