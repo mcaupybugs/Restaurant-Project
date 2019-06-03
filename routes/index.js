@@ -35,7 +35,8 @@ router.post("/register",(req,res)=>{
         }else{
             passport.authenticate("local")(req,res,()=>{
                 res.render("menu");
-            })
+                user.email=req.body.email;
+            });
         }
     });
 });

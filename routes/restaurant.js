@@ -23,6 +23,9 @@ router.get('/gallery',(req,res)=>
     console.log("Gallery logged");
 });
 
+//=======================================
+//Order adding routes
+
 router.get('/menu',isLoggedIn,(req,res)=>{
     res.render("menu");
     console.log("Menu logged");
@@ -34,20 +37,28 @@ router.post('/menu',isLoggedIn,(req,res)=>{
             res.render("/");
             console.log(err);
         }else{
+            req.user.orders.push(newOrder);
+            req.user.save();
             res.redirect("menu");
         }
     });
 });
 
+//========================================
+
+
 router.get('/cart',isLoggedIn,(req,res)=>{
-    Order.distinct("name",(err,foods)=>{
-        if(err){
-            console.log(err);
-        }else{
-            res.render("order_online",{foods:foods});
-        }
-    });
-});
+            Order.find({'_id': {$in:req.user.orders}},(err,food)=>{
+                if(err){
+                   console.log(err);
+                }
+                else{
+                    res.render("order_online",{foods:food}); 
+                }
+            })
+        }); 
+
+//========================================
 
 router.get('/order',(req,res)=>{
     res.render("order");
