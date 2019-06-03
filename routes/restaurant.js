@@ -79,29 +79,6 @@ router.get('/feedback',(req,res)=>{
     console.log("Thank you for your feedback");
 });
 
-//========================================
-
-router.put("/cart",(req,res)=>{
-    var val=0;
-    Order.findById(req.body.food.id,(err,foundItem)=>{
-        val=foundItem.value;
-        val=val+1;
-        var item={
-            name:foundItem.name,
-            value:val
-        }
-        console.log(item);  
-        Order.findByIdAndUpdate(req.body.food.id,item,(err,updateItem)=>{
-            if(err){
-                res.redirect("/cart")
-            }else{
-                res.redirect("/cart");
-            }
-        })
-
-    })
-})
-
 
 
 //=========================================
