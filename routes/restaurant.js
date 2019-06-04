@@ -2,6 +2,7 @@ var express=require("express");
 var router=express.Router({mergeParams:true});
 var User=require("../models/user");
 var Order=require("../models/order");
+var Info=require("../models/info");
 var methodOverride=require("method-override");
 
 
@@ -35,7 +36,6 @@ router.get('/menu',isLoggedIn,(req,res)=>{
 
 router.post('/menu',isLoggedIn,(req,res)=>{
     req.body.order.value=1;
-    console.log(req.body.order);
     Order.create(req.body.order,(err,newOrder)=>{
         if(err){
             res.render("/");
@@ -64,17 +64,41 @@ router.get('/cart',isLoggedIn,(req,res)=>{
 
 //========================================
 
-router.get('/order',(req,res)=>{
-    res.render("order");
-    console.log("Ordering....");
+router.get('/order',isLoggedIn,(req,res)=>{
+    Order.find({'_id': {$in:req.user.orders}},(err,food)=>{
+        if(err){
+           console.log(err);
+        }
+        else{
+            res.render("order",{foods:food});
+        }
+    })
 });
 
-router.get('/thankyou',(req,res)=>{
+router.post("/order",isLoggedIn,(req,res)=>{
+    console.log(req.body.info);
+    Info.create(req.body.info,(err,newOrder)=>{
+        if(err){
+            res.render('order');
+        }else{
+            res.render("order_placed",{Person:newOrder});
+        }
+    });
+})
+
+
+
+//========================================
+
+
+router.get('/thankyou',isLoggedIn,(req,res)=>{
     res.render("order_placed");
     console.log("Thank you");
 });
 
-router.get('/feedback',(req,res)=>{
+//=========================================
+
+router.get('/feedback',isLoggedIn,(req,res)=>{
     res.render("feedback");
     console.log("Thank you for your feedback");
 });

@@ -3,7 +3,7 @@ var router=express.Router({mergeParams:true});
 var User=require("../models/user");
 var Order=require("../models/order");
 var passport=require("passport");
-
+var Info=require("../models/info");
 
 //Login routes
 router.get("/login",(req,res)=>{

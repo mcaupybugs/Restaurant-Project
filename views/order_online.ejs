@@ -4,7 +4,7 @@
               <!-- Cart head and the image-->
     <div class="container">
     <div><img src="images/shopping-cart.png" width="20%" height="20%" style="margin-top:0px" alt="Unsplashed background img 1"><h4>Your Shopping Cart is Ready</h4></div>
-    <hr>
+      <hr>
 
 <!-- Main cart list and button -->
   <form action="/cart?_method=DELETE" method="POST">
@@ -14,7 +14,14 @@
       </form>
       <h5><%=food.name%></h5>
     <% });%>
-  </div>
   </form>
+  <hr>
+  <form class="row" action="/order" method="GET">
+    <button class="btn waves-effect waves-light black" type="submit" >Submit
+    <i class="material-icons right">send</i>
+  </button>  </form>
+    
+  </div>
+
 
 <% include ./partials/footer%>
