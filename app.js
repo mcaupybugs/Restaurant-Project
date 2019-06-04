@@ -9,6 +9,7 @@ var Order=require("./models/order");
 var User=require("./models/user");
 var Info=require("./models/info");
 var methodOverride=require("method-override");
+var flash=require("connect-flash");
 
 //Calling routes
 var restaurantRoutes=require("./routes/restaurant");
@@ -29,6 +30,7 @@ app.use(express.static("public"));
 app.set("view engine","ejs");
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 passport.use(new LocalStrategy(User.authenticate()));
 
@@ -43,6 +45,8 @@ app.use('/', express.static(__dirname + '/'));
  
 app.use((req,res,next)=>{
     res.locals.currentUser=req.user;
+    res.locals.error=req.flash("error");
+    res.locals.success=req.flash("success");
     next();
 });
 

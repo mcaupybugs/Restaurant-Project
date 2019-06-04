@@ -4,7 +4,9 @@ var User=require("../models/user");
 var Order=require("../models/order");
 var Info=require("../models/info");
 var methodOverride=require("method-override");
+var flash=require("connect-flash");
 
+router.use(flash());
 
 
 //Basic Restaurant Routes
@@ -123,6 +125,7 @@ function isLoggedIn(req,res,next){
     if(req.isAuthenticated()){
         return next();
     }else{
+        req.flash("error","Please log in first");
         res.redirect("/login");
     }
 };

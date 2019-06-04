@@ -4,6 +4,10 @@ var User=require("../models/user");
 var Order=require("../models/order");
 var passport=require("passport");
 var Info=require("../models/info");
+var flash=require("connect-flash");
+
+router.use(flash());
+
 
 //Login routes
 router.get("/login",(req,res)=>{
@@ -20,6 +24,7 @@ router.post("/login",passport.authenticate("local",
 //Logout route
 router.get("/logout",(req,res)=>{
     req.logout();
+    req.flash("success","Logged you out successfully");
     res.redirect("/");
 });
 
@@ -46,6 +51,7 @@ function isLoggedIn(req,res,next){
     if(req.isAuthenticated()){
         return next();
     }else{
+        req.flash("error","Please log in first");
         res.redirect("/login");
     }
 };

@@ -52,3 +52,15 @@
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+  <div class="container">
+  <%if(error && error.length>0){%>
+  <div class="alert alert-danger" style="margin-top:10px" role="alert">
+      <%=error%>
+    </div>
+    <%}%>
+    <%if(success && success.length>0){%>
+  <div class="alert alert-success" style="margin-top:10px" role="alert">
+      <%=success%>
+    </div>
+    <%}%> 
+  
