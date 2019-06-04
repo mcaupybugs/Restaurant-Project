@@ -5,7 +5,11 @@ var Order=require("../models/order");
 var Info=require("../models/info");
 var methodOverride=require("method-override");
 var flash=require("connect-flash");
+var sendgrid=require("@sendgrid/mail");
 
+//Setting up SANDGRID
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
+//Setting up flash
 router.use(flash());
 
 
@@ -78,12 +82,35 @@ router.get('/order',isLoggedIn,(req,res)=>{
 });
 
 router.post("/order",isLoggedIn,(req,res)=>{
-    console.log(req.body.info);
+    var output=`
+                <p>You have a new order</p>
+                <p>Order Details</p>
+                <ul>
+                    <li>Name:${req.body.info.name}</li>
+                    <li>Email:${req.body.info.email}</li>
+                    <li>Payment:${req.body.info.method}</li>
+                    <li>Address:${req.body.info.address}</li>
+                </ul>
+                    
+            `;
     Info.create(req.body.info,(err,newOrder)=>{
         if(err){
             res.render('order');
         }else{
-            res.render("order_placed",{Person:newOrder});
+            const msg = {
+                to: req.body.info.email,
+                from: 'noreply@taimur.com',
+                subject: `Thank you ${req.body.info.name}`,
+                text: 'Order Details',
+                html: output
+              };
+              sendgrid.send(msg,(err,done)=>{
+                  if(err){
+                      console.log(err);
+                  }else{
+                    res.render("order_placed",{Person:newOrder});
+                  }
+              });
         }
     });
 })

@@ -10,6 +10,11 @@ var User=require("./models/user");
 var Info=require("./models/info");
 var methodOverride=require("method-override");
 var flash=require("connect-flash");
+var sandgrid=require("@sendgrid/mail");
+
+//Setting up SENDGRID
+sandgrid.setApiKey(process.env.SENDGRID_API_KEY);
+
 
 //Calling routes
 var restaurantRoutes=require("./routes/restaurant");
