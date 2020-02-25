@@ -5,6 +5,10 @@ var Order=require("../models/order");
 var passport=require("passport");
 var Info=require("../models/info");
 var flash=require("connect-flash");
+var sendgrid=require("@sendgrid/mail");
+
+//Setting up SENDGRID
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 router.use(flash());
 
@@ -55,6 +59,9 @@ function isLoggedIn(req,res,next){
         res.redirect("/login");
     }
 };
+
+
+
 
 
 module.exports=router;
