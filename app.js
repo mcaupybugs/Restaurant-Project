@@ -20,8 +20,8 @@ sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 var restaurantRoutes = require("./routes/restaurant");
 var authRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/restaurant");
-//mongoose.connect(process.env.DATABASEURL);
+//mongoose.connect("mongodb://localhost/restaurant");
+mongoose.connect(process.env.DATABASEURL);
 
 
 app.use(require("express-session")({
