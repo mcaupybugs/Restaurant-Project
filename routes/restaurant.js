@@ -38,13 +38,13 @@ router.get('/menu', isLoggedIn, (req, res) => {
 });
 
 router.post('/menu', isLoggedIn, (req, res) => {
-    console.log(req.user.username);
+    //console.log(req.user.username);
 
     Order.count({ username: req.user.username, name: req.body.order.name }, (err, result) => {
         if (err) {
             console.log(err);
         } else {
-            console.log(result);
+            //console.log(result);
             if (result == 0) {
                 req.body.order.value = 1;
                 req.body.order.username = req.user.username;
@@ -53,7 +53,7 @@ router.post('/menu', isLoggedIn, (req, res) => {
                         res.render("/");
                         console.log(err);
                     } else {
-                        console.log(newOrder);
+                        //console.log(newOrder);
                         req.user.orders.push(newOrder);
                         req.user.save();
                         res.redirect("menu");
@@ -65,9 +65,10 @@ router.post('/menu', isLoggedIn, (req, res) => {
                         console.log(err);
                     } else {
                         var newValue = data.value + 1;
-                        console.log(newValue);
+                        //console.log(newValue);
                         data.value = newValue;
                         data.save();
+                        res.redirect("menu");
                     }
                 })
             }
