@@ -20,9 +20,10 @@ sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 var restaurantRoutes = require("./routes/restaurant");
 var authRoutes = require("./routes/index");
 
-//mongoose.connect("mongodb://localhost/restaurant");
-mongoose.connect(process.env.DATABASEURL);
-
+//mongoose.connect("mongodb+srv://mcaupybugs:DLghSd8SmZsCiqAB@cluster0.rqe7k.mongodb.net/?retryWrites=true&w=majority");
+mongoose.connect("mongodb://root:example@mongo:27017/");
+console.log(process.env.DATABASEURL);
+// DLghSd8SmZsCiqAB
 
 app.use(require("express-session")({
     secret: "here it is",
@@ -65,4 +66,3 @@ const port = process.env.PORT || 3200;
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
 });
-
