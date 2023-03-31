@@ -1,12 +1,10 @@
 version: '3'
 services:
   server:
-    container_name: server
-    build:
-      dockerfile: Dockerfile
+    image: mcaupybugs/taimur-app:latest
     ports:
       - 3200:3200
-  
+
   mongo:
     image: mongo:4.4.6
     restart: always
